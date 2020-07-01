@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+	# -*- coding: utf-8 -*-
 #Global variables for eolic_translate
-DATA_PATH = "../brutos/"
+EOLIC_DATA = "../brutos/"
+SOLAR_DATA = "../solar_data/"
 OUTPUT_PATH = "../formatados/"
 HEADER = ".header"
 H_TYPES = ('*.fsl', '*.FSL')
