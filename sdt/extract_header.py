@@ -11,11 +11,8 @@ def extract_header(station_path,station):
     fsl_ = get_fsl_path(station_path)
     headers = extract_variables(fsl_,station)
     
-#    for h in headers:
-#        print(','.join(map(str, h[0:10])))
+    return headers
 
-#    
-    
 
 def get_fsl_path(stat_path):
     files_grabbed = []
@@ -39,32 +36,31 @@ def get_fsl_path(stat_path):
 def extract_variables(f_list,station):
     
     varis = []
+    st_names = []
+    st_date = []
     for it in range(len(f_list)):
         with open(f_list[it]) as file:
             data = file.read()
             header = variables(data)
-            
-#            print(header[1],header[2])
-            station_n =  (','.join(map(str, header[1]))) + '     ' + str(','.join(map(str, header[2])))
-            print(station_n)
+
+            st_names.append(header[1])
+            st_date.append(header[2])
 
             ## Variables
             for hd in range(len(header[0])):
                 vlues = header[0][hd]['values'].values
                 if len(vlues) > 4:
                     varis.append(vlues)
-                    
-#            print(varis)
-            for h in varis:
-                print(','.join(map(str, h[0:10])))
-            
-            
-    return varis,header[1]
+    nms = {}
+    for h in range(len(st_names)):
+        nms[h] = dict(name = st_names[h], datetime = st_date[h], variables = varis)
+        
+    return nms
 
         
 def variables(data):
 
-    full_regex = r"(\w+.csi|\w+.CSI)|(\w+ .+ \w{1}\b)|(\w+:\s+\d+\W\d+\W\d*)"
+    full_regex = r"(\w+.csi|\w+.CSI)|(\w+ .+ \w{1}\b)|(\w+:\s*\d+/\d+/\d+)"
 
     
     full_matches = re.finditer(full_regex, data, re.MULTILINE)
@@ -91,8 +87,7 @@ def variables(data):
             cnt,var = g1[0],g1[1]
             vec1.append(int(cnt))
             vec2.append(var)
-#            
-    
+
     fsl_dict['datetime'] = vec_
     fsl_dict['name'] = vec2_
 

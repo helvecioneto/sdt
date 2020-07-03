@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from os import listdir
 from extract_header import extract_header
+from file_action import get_files
 from menu_header import top_header
 
 def call_station(path,station):
@@ -11,6 +12,7 @@ def call_station(path,station):
     path = path+station
     # Path to fsl extract
     path_ = path
+
     years_ = [fn for fn in listdir(path) if fn.startswith('2')]
     
     count = -1
@@ -31,8 +33,11 @@ def call_station(path,station):
         
         path = path + '/' +years_[ans_file] + '/'
         
-
-        extract_header(path_,station)
+        
+        files = get_files(path_,years_[ans_file])
+#        print(path_,station)
+        
+#        extract_header(path_,station)
 
         break
     
@@ -64,8 +69,9 @@ def call_station_solar(path,station):
         
         path = path + '/' +years_[ans_file] + '/'
         
+        files = get_files(path_,years_[ans_file])
 
-        extract_header(path_,station)
+#        extract_header(path_,station)
 
         break
     

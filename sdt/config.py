@@ -5,5 +5,5 @@ SOLAR_DATA = "../solar_data/"
 OUTPUT_PATH = "../formatados/"
 HEADER = ".header"
 H_TYPES = ('*.fsl', '*.FSL')
-FILE_TYPE = ".dat"
+FILE_TYPE = ("*.dat, *.DAT")
 TMP = "tmp/"
