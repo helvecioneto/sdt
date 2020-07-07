@@ -2,7 +2,7 @@
 import sys
 from config import EOLIC_DATA, SOLAR_DATA
 from os import listdir
-from stations import call_station, call_station_solar
+from sts import call_station, call_station_solar
 from menu_header import top_header
 
 def main_menu():
@@ -13,7 +13,7 @@ def menu():
     top_header("Main Menu:") 
     choice = input("""
                       1: Anemometric Data
-                      2: Solarimetric Data
+                      2: Solar Data
                       Q: Quit
 
                       Please enter your choice: """)

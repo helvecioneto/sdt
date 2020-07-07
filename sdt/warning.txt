@@ -1,0 +1,1 @@
+('Size of variables are different', PosixPath('/Users/helvecioneto/workspace_spyder/sdt/brutos/SCR-SaoJoaoCariri/2008/SCR08_166a366.dat'), ' for station: ', '21.81')

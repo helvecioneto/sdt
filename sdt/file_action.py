@@ -3,7 +3,9 @@ import pandas as pd
 from config import FILE_TYPE
 from pathlib import Path
 from extract_header import extract_header
+from translate import translate_station
 import os
+import logging
        
 def get_files(path_,year):
     sts = path_+'/'+str(year)+'/'
@@ -63,19 +65,28 @@ def open_files(files,path_,year):
                     print('\n')
                     print(pd.DataFrame(names).to_string(index=True, header=False))
 
-                    print('Attention, or number of columns are different!')
+                    print('Attention, number of columns are different!')
                     print('')
                     phead = pd.DataFrame(possib_head2)
                     hedd = phead[phead.duplicated(keep='last')]
-                    
+
                     ## Check if duplicated
-                    if len(hedd) == 1:
-                        print(hedd.to_string(index=False, header=False))
-                        print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=False))
-                        input("Press Enter to continue...")
+                    if len(hedd) == 1 and len(hedd[0]) == len(ddf[ids].columns):
+                        ## Convert to lowercase
+                        hedd =  hedd.values.tolist()
+                        hedd = map(lambda x:x.lower(),hedd[0])
+                        ## Fix header
+                        ddf[ids].columns = hedd
+#                       # Translate
+                        translate_station(ddf[ids],file)
                     else:
-                        print(hedd.to_string(index=True, header=False))
-                        print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=False))
+                        print(pd.DataFrame(possib_head2).to_string(index=True, header=True))
+                        print('\n')
+                        print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=True))
+                        print('Não conseguiu encontrar um FSL correto gerar log')
+                        logging.basicConfig(filename='warning.txt', filemode='w',format='%(message)s')
+                        message = 'Size of variables are different', file,' for station: ', ids
+                        logging.warning(message)
                         input("Select header Enter to continue...")
 
                 ## Check if duplicated values    
@@ -90,9 +101,14 @@ def open_files(files,path_,year):
                     hedd = phead[phead.duplicated(keep='last')]
                     
                     if len(hedd) == 1:
-                        print(hedd.to_string(index=False, header=False))
-                        print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=False))
-                        input("Press Enter to continue...")
+                        ## Convert to lowercase
+                        hedd =  hedd.values.tolist()
+                        hedd = map(lambda x:x.lower(),hedd[0])
+                        ## Fix header
+                        ddf[ids].columns = hedd
+                        ## Translate
+                        translate_station(ddf[ids],file)
+
                     else:
                         print('\n')
                         print(pd.DataFrame(possib_head).to_string(index=True, header=True))
@@ -100,6 +116,11 @@ def open_files(files,path_,year):
                         print('\n')
                         print('Data Frame:')
                         print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=True))
+                        print('Não conseguiu encontrar um FSL correto gerar log')
+                                        ## Logging
+                        logging.basicConfig(filename='warning.txt', filemode='w',format='%(message)s')
+                        message = 'Size of variables are different', file,' for station ID: ', ids
+                        logging.warning(message)
                         input("Select header Enter to continue...")
                     
                 ## Are equal    
@@ -110,9 +131,8 @@ def open_files(files,path_,year):
                     print(pd.DataFrame(names).to_string(index=False, header=False))
                     print('')
                     print('\n')
-                    print(pd.DataFrame(possib_head).iloc[:, : 20].to_string(index=False, header=False))
-                    print(ddf[ids].head(10).iloc[:, : 20].to_string(index=False, header=False))
-                    print('')
-                    print('\n')
-                    input("Press Enter to continue...")
+                    ## Fix header
+                    ddf[ids].columns = possib_head
+                    ## Translate
+                    translate_station(ddf[ids],file)
         
