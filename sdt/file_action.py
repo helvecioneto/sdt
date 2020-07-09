@@ -6,6 +6,7 @@ from extract_header import extract_header
 from translate import translate_station
 import os
 import logging
+import numpy as np
        
 def get_files(path_,year):
     sts = path_+'/'+str(year)+'/'
@@ -127,12 +128,14 @@ def open_files(files,path_,year):
                 if len(possib_head) == 1:
                     print('Station: ', file.parent.parent.name ,'\t\tYear: ', file.parent.name, '\t\tFile: ', file.name )
                     print('\n')
-                    print('FSL Names: ')
+                    print('FSL Names: AQI')
                     print(pd.DataFrame(names).to_string(index=False, header=False))
                     print('')
                     print('\n')
                     ## Fix header
-                    ddf[ids].columns = possib_head
+                    ddf[ids].columns = possib_head[0]
+#                    input("Select header Enter to continue...")
                     ## Translate
                     translate_station(ddf[ids],file)
+
         

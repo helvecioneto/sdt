@@ -6,3 +6,4 @@ def translate_station(df,path):
     
     if 'BRB' in str(path):
         translate_brb(df)
+        input("Select header Enter to continue...")
