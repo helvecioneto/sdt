@@ -1,5 +1,14 @@
 {
+    "code-runner.executorMap": {
+        "python": "venv/bin/python",
+    },
     "cSpell.words": [
+        "Mask",
+        "Maska",
+        "fillna",
+        "iloc",
+        "numpy",
+        "resample",
         "speak"
     ]
 }
