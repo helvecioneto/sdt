@@ -7,6 +7,8 @@ from translate import translate_station
 import os
 import logging
 import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
        
 def get_files(path_,year):
     sts = path_+'/'+str(year)+'/'
