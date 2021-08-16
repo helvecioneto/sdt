@@ -1,0 +1,93 @@
+[{  "TEMPORARY_IN":"./input/dados_temporarios/",
+    "SKYCAMERA_IN":"./input/sky_camera/",
+    "PREPROCESSING_IN":"./input/preprocessing/",
+    "OPERATIONAL_IN":"./input/operational/",
+        
+    "FORMATED_OUT":"./output/dados_formatados/",
+    "TEMPORARY_OUT":"./output/temporary_data",
+    "HISTORICAL_OUT":"./output/dados_historicos/",
+    
+    "DEBUG_DIR":"./output/debug/",
+    "FTP_DIR":"/restricted/coleta/",
+    "FTP_OUT_HISTORICAL":"/restricted/dados/sonda/historico/",
+    
+    "FTP_IP":"",
+    "FTP_USER":"",
+    "FTP_PASS":"",
+    
+    "QUALI_IN":"./output/dados_formatados/",
+    "QUALI_OUT":"./output/dados_qualificados/",
+    "WEB_OUT":"./output/dados_web/",
+    "DICTIONARY":"./dicionario/dicionario_dados_labren_v6.xlsx",
+        
+    "_comment": "FSL_BRUTE",
+    "BRUTE_HEADER": ["ID","Year","Day","Min","Global_Avg","Global_Std","Global_Max",
+                     "Global_Min","Diffuse_Avg","Diffuse_Std","Diffuse_Max","Diffuse_Min",
+                     "PAR_Avg","PAR_Std","PAR_Max","PAR_Min","Lux_Avg","Lux_Std","Lux_Max",
+                     "Lux_Min","Temp_Sfc","Humid","Press","Prec","Ws10_Avg","Wd10_Avg",
+                     "Wd10_Std","CosAngZen","Direct_Avg","Direct_Std","Direct_Max",
+                     "Direct_Min","LW_Avg","LW_Std","LW_Max","LW_Min","Temp_Global",
+                     "Temp_Direct","Temp_Diffuse","Temp_Dome","Temp_Case"],
+    
+    
+    "_comment": "SPLIT HEADERS",
+    "meteoH": ["ID", "Year", "Day", "Min", "Temp_Sfc", "Humid",
+                "Press", "Prec", "Ws10_Avg", "Wd10_Avg", "Wd10_Std"],
+        
+    "solarH": ["ID", "Year", "Day", "Min", "Global_Avg","Global_Std","Global_Max","Global_Min",
+                    "Diffuse_Avg","Diffuse_Std","Diffuse_Max","Diffuse_Min","PAR_Avg","PAR_Std","PAR_Max",
+                    "PAR_Min","Lux_Avg","Lux_Std","Lux_Max","Lux_Min","Direct_Avg","Direct_Std",
+                    "Direct_Max","Direct_Min","LW_Avg","LW_Std","LW_Max","LW_Min","Temp_Global",
+                    "Temp_Direct","Temp_Diffuse","Temp_Dome","Temp_Case"],
+                    
+    "_comment": "FIX DEFAULT HEADERS",
+    "MET_HEADER": [["acronym", "", ""],["timestamp", "", ""], ["year", "", ""], ["day", "", ""], ["min", "", ""],
+                   ["tp_sfc", "\u00b0C", "tmo_aspirat"], ["humid_sfc", "%", "hgr_aspirat"], ["press", "mb", "bar_atmosph"], ["rain", "mm", "plv_tipbuk"],
+                   ["ws10_avg", "m/s", "anm_propel"], ["ws10_std", "m/s", "anm_propel"], ["wd10_avg", "deg", "anm_propel"], ["wd10_std", "deg", "anm_propel"]],
+                   
+    
+    "SOLAR_HEADER": [["acronym", "", ""],["timestamp", "", ""], ["year", "", ""], ["day", "", ""], ["min", "", ""], 
+                    ["glo_avg", "W/m2", "pir_thermpil"], ["glo_std", "W/m2", "pir_thermpil"], ["glo_max", "W/m2", "pir_thermpil"], ["glo_min", "W/m2", "pir_thermpil"], 
+                    ["dif_avg", "W/m2", "pir_shdtrker"], ["dif_std", "W/m2", "pir_shdtrker"], ["dif_max", "W/m2", "pir_shdtrker"], ["dif_min", "W/m2", "pir_shdtrker"], 
+                    ["par_avg", "µmols/m2.s", "par_photodio"], ["par_std", "µmols/m2.s", "par_photodio"], ["par_max", "µmols/m2.s", "par_photodio"], ["par_min", "µmols/m2.s", "par_photodio"], 
+                    ["lux_avg", "klux", "lux_photodio"], ["lux_std", "klux", "lux_photodio"], ["lux_max", "klux", "lux_photodio"], ["lux_min", "klux", "lux_photodio"], 
+                    ["dir_avg", "W/m2", "phl_thermpil"], ["dir_std", "W/m2", "phl_thermpil"], ["dir_max", "W/m2", "phl_thermpil"], ["dir_min", "W/m2", "phl_thermpil"], 
+                    ["lw_avg", "W/m2", "prg_shdtrkr"], ["lw_std", "W/m2", "prg_shdtrkr"], ["lw_max", "W/m2", "prg_shdtrkr"], ["lw_min", "W/m2", "prg_shdtrkr"], 
+                    ["temp_glo", "°C", "tcp_sensor"], ["temp_dir", "°C", "tcp_sensor"], ["temp_dif", "°C", "tcp_sensor"], ["temp_dome", "°C", "tcp_sensor"], ["temp_case", "°C", "tcp_sensor"]],
+    
+    "SKY_CAMERA":[["BRB"],[["acronym",""],["timestamp",""],["year",""],["day",""],["min",""],["cov_brbg","sky_camera"],["cov_cdoc","sky_camera"],["cov_cdoc_thick","sky_camera"],["cov_cdoc_thin","sky_camera"],["cov_sun","sky_camera"]]],
+                    
+                    
+    "_comment": "UPDATE HEADERS",        
+    "MET_UPDATE": [[["BRB"],"2015-06-01 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]],
+                   [["PTR"],"2015-08-01 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]],
+                   [["SMS"],"2015-11-01 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]],
+                   [["OUR"],"2015-09-15 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]],
+                   [["SLZ"],"2015-01-01 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]],
+                   [["PMA"],"2020-06-01 00:00:00",["ws10_avg", "m/s", "anm_sonic"], ["ws10_std", "m/s", "anm_sonic"], ["wd10_avg", "deg", "anm_sonic"], ["wd10_std", "deg", "anm_sonic"]]
+               ],
+                   
+    "SOL_UPDATE": [[["OUR"],"2006-02-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["CBA"],"2004-01-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["CGR"],"2004-02-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["JOI"],"2004-04-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["SBR"],"2004-01-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["NAT"],"2007-07-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["PMA"],"2005-04-01 00:00:00",["dif_avg", "W/m2", "pir_shdring"], ["dif_std", "W/m2", "pir_shdring"], ["dif_max", "W/m2", "pir_shdring"], ["dif_min", "W/m2", "pir_shdring"]],
+                   [["OUR"],"2015-09-15 00:00:00",["dif_avg", "W/m2", "pir_shdtrker"], ["dif_std", "W/m2", "pir_shdtrker"], ["dif_max", "W/m2", "pir_shdtrker"], ["dif_min", "W/m2", "pir_shdtrker"]],
+                   [["CAI"],"2015-11-01 00:00:00",["dif_avg", "W/m2", "pir_shdtrker"], ["dif_std", "W/m2", "pir_shdtrker"], ["dif_max", "W/m2", "pir_shdtrker"], ["dif_min", "W/m2", "pir_shdtrker"]],
+                   [["PMA"],"2020-06-01 00:00:00",["dif_avg", "W/m2", "pir_shdtrker"], ["dif_std", "W/m2", "pir_shdtrker"], ["dif_max", "W/m2", "pir_shdtrker"], ["dif_min", "W/m2", "pir_shdtrker"]]
+               ],
+               
+    "_comment": "UPDATE HEADERS HISTORIAL TO FORMAT", 
+    "MET_INPUT": ["SMS","timestamp", "id", "year", "jday", "min",
+                "tp_sfc", "humid", "press", "rain", "ws10_avg","wd10_avg","wd10_std","ws10_std","ws10_min","ws10_max","wd10_min","wd10_max"],
+                
+    "SOLAR_INPUT": ["SMS","timestamp","id","year","jday","min","glo_avg","glo_std",
+                     "glo_min","glo_max","dif_avg","dif_std","dif_min","dif_max","dir_avg",
+                     "dir_std","dir_min","dir_max","lw_raw_avg","lw_raw_std","lw_raw_min",
+                     "lw_raw_max","par_avg","par_std","par_min","par_max","lux_avg","lux_std",
+                     "lux_min","lux_max","tilt_avg","tilt_std","tilt_min","tilt_max",
+                     "lw_calc_avg","lw_calc_std","lw_calc_min","lw_calc_max","tp_dir",
+                     "tp_lw_case"]
+}]
