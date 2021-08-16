@@ -1,5 +1,5 @@
 ## SDT
-config.json
+*.json
 input
 output
 
