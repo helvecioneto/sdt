@@ -1,0 +1,23 @@
+glob_avg = 10
+
+
+if glob_avg > 50 and AZS < 75:
+   if dif / glob_avg < 1.05:
+        APROVADO
+    else:
+        REPROVADO
+
+elif glob_avg > 50 and AZS > 75:
+   if dif / glob_avg < 1.10:
+        APROVADO
+    else:
+        REPROVADO
+
+elif glob_avg < 50:
+   if dif - global < 15:
+        APROVADO
+    else:
+        REPROVADO
+
+else:
+    REPROVADO

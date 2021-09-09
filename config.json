@@ -80,14 +80,32 @@
                ],
                
     "_comment": "UPDATE HEADERS HISTORIAL TO FORMAT", 
-    "MET_INPUT": ["SMS","timestamp", "id", "year", "jday", "min",
-                "tp_sfc", "humid", "press", "rain", "ws10_avg","wd10_avg","wd10_std","ws10_std","ws10_min","ws10_max","wd10_min","wd10_max"],
+    "MET_INPUT": ["acronym","timestamp", "year", "jday", "min",
+                "tp_sfc", "humid", "press", "rain", "ws10_avg","ws10_std","wd10_avg","wd10_std"],
                 
-    "SOLAR_INPUT": ["SMS","timestamp","id","year","jday","min","glo_avg","glo_std",
-                     "glo_min","glo_max","dif_avg","dif_std","dif_min","dif_max","dir_avg",
-                     "dir_std","dir_min","dir_max","lw_raw_avg","lw_raw_std","lw_raw_min",
-                     "lw_raw_max","par_avg","par_std","par_min","par_max","lux_avg","lux_std",
-                     "lux_min","lux_max","tilt_avg","tilt_std","tilt_min","tilt_max",
+    "SOLAR_INPUT": ["acronym","timestamp","year","jday","min",
+                     "glo_avg","glo_std","glo_max","glo_min",
+                     "dif_avg","dif_std","dif_max","dif_min",
+                     "par_avg","par_std","par_max","par_min",
+                     "lux_avg","lux_std","lux_max","lux_min",
+                     "dir_avg","dir_std","dir_max","dir_min",
+                     "lw_raw_avg","lw_raw_std","lw_raw_max","lw_raw_min",
+                     "tilt_avg","tilt_std","tilt_min","tilt_max",
                      "lw_calc_avg","lw_calc_std","lw_calc_min","lw_calc_max","tp_dir",
-                     "tp_lw_case"]
+                     "tp_lw_case"],
+
+    "_comment": "FIX DEFAULT FORTMATED HEADERS",
+    "MET_HEADER_FORM": [["acronym", ""],["timestamp", ""], ["year", ""], ["day", ""], ["min", ""],
+                   ["tp_sfc", "tmo_aspirat"], ["humid_sfc", "hgr_aspirat"], ["press", "bar_atmosph"], ["rain", "plv_tipbuk"],
+                   ["ws10_avg", "anm_propel"], ["ws10_std", "anm_propel"], ["wd10_avg", "anm_propel"], ["wd10_std", "anm_propel"]],
+                   
+    
+    "SOLAR_HEADER_FORM": [["acronym", ""],["timestamp", ""], ["year", ""], ["day", ""], ["min", ""], 
+                    ["glo_avg", "pir_thermpil"], ["glo_std", "pir_thermpil"], ["glo_max", "pir_thermpil"], ["glo_min", "pir_thermpil"], 
+                    ["dif_avg",  "pir_shdtrker"], ["dif_std", "pir_shdtrker"], ["dif_max", "pir_shdtrker"], ["dif_min", "pir_shdtrker"], 
+                    ["par_avg", "par_photodio"], ["par_std", "par_photodio"], ["par_max", "par_photodio"], ["par_min", "par_photodio"], 
+                    ["lux_avg", "lux_photodio"], ["lux_std", "klux", "lux_photodio"], ["lux_max", "klux", "lux_photodio"], ["lux_min", "lux_photodio"], 
+                    ["dir_avg", "phl_thermpil"], ["dir_std", "phl_thermpil"], ["dir_max", "phl_thermpil"], ["dir_min", "phl_thermpil"], 
+                    ["lw_avg", "prg_shdtrkr"], ["lw_std", "prg_shdtrkr"], ["lw_max", "prg_shdtrkr"], ["lw_min", "prg_shdtrkr"], 
+                    ["temp_glo", "tcp_sensor"], ["temp_dir", "tcp_sensor"], ["temp_dif", "tcp_sensor"], ["temp_dome", "tcp_sensor"], ["temp_case", "tcp_sensor"]]
 }]

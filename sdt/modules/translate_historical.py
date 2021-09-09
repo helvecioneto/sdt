@@ -86,9 +86,9 @@ def open_file(select_file,station,year,file):
     met_header = load_config()[0]['MET_INPUT']
     solar_header = load_config()[0]['SOLAR_INPUT']
     
-    ##OUTPUT HEADER
-    met_out_header = load_config()[0]['MET_HEADER']
-    sol_out_header = load_config()[0]['SOLAR_HEADER']
+    ##OUTPUT HEADER FORMATED
+    met_out_header = load_config()[0]['MET_HEADER_FORM']
+    sol_out_header = load_config()[0]['SOLAR_HEADER_FORM']
     
     top_header('Main > Preprocessing > Translate Historical > '+str(station) +' > ' + str(year) + ' > ' +str(file))
     print('\t\tPlease select one file to translate  file: ')
@@ -96,23 +96,52 @@ def open_file(select_file,station,year,file):
     if 'MD' in  file:
         header_in = met_header
         header_out = met_out_header
+        var_name = '/Meteorologicos/'
+        typ = 'MD'
     if 'SD' in file:
         header_in = solar_header
         header_out = sol_out_header
+        var_name = '/Solarimetricos/'
+        typ = 'SD'
     if 'TD' in file:
         header_in = None
         header_out = None
+        var_name = '/Anemometricos/'
+        typ = 'TD'
     
-    # print(header_in[1:])
-    # print(header_out)
-    
+    ## TO FRAME
     df = pd.read_csv(select_file, sep=",")
     
     ## SELECT ONLY COLUMNS INPUT
     df = df[header_in[1:]]
     ## IGNORE MULTINDEX INTO HISTORICAL DATA
     df = df.iloc[1:]
-    
+
+    ## ADD acronym column
+    df.insert (0, "acronym", station)
+
+    ## CONVERT TO MUX
+    mux = pd.MultiIndex.from_tuples(header_out)
+    df.columns = mux
+
     print(df)
-    print('aqui')
-    print(load_config()[0]['FORMATED_OUT']+str(station)+'/'+str(year))
+
+    ## SAVE PROCESS
+    ## GET MONTH
+    month_ = pd.to_datetime(df['timestamp']).dt.strftime('%m').unique()[0]
+    out_put = (load_config()[0]['FORMATED_OUT']+str(station)+var_name+str(year)+'/')
+    out_file = station+'_'+year+'_'+month_+'_'+typ+'_formatado.csv'
+
+
+    ### Create dir of output if not exist
+    if not os.path.exists(os.path.dirname(out_put)):
+        try:
+            os.makedirs(os.path.dirname(out_put))
+        except OSError as exc: # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+
+    # print(out_put+var_name+station+'_'+year+'_'+month_+'_'+typ+'_formatado.csv')
+    ## SAVE
+    df.to_csv(out_put+out_file,index=False)
+    print('File has been saved in: '+out_put+out_file)

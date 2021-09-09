@@ -371,7 +371,9 @@ def historic_generate():
             else:
                 last_file_version = None
             file_to_upload = file__
-            
+
+            print('File has been saved in: ',file__)
+            print('\n')
             print('\t\tUpload files to FTP: ')
             choice = input("""
                           (Y) - Yes

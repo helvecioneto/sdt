@@ -39,7 +39,6 @@ def connection():
         print('')
         print('\t\tPlease select one station')
         stations_list,ftp_con = get_station_list(ftp)
-        
         return stations_list,ftp_con
          
     except:
@@ -56,18 +55,18 @@ def get_station_list(ftp):
     
     ftp_dir = config_file[0]['FTP_DIR']
     
-    ## Add STATIONS
-    lt_stations = ['sms']
+    # Add STATIONS
+    # lt_stations = ['sms']
     
-    # direc_st = []
-    # for station in ftp.nlst(directory):
-    #     if "." in station:
-    #         pass
-    #     else:
-    #         lt_stations.append(station[-3:])
-    #         direc_st.append(station)
-    
-    return lt_stations,ftp
+    direc_st = []
+    for station in ftp.nlst(ftp_dir):
+        if "." in station:
+            pass
+        else:
+            # lt_stations.append(station[-3:])
+            direc_st.append(station[-3:])
+
+    return direc_st,ftp
 
 def download_files(directory,connection,station):
 
@@ -94,6 +93,7 @@ def download_files(directory,connection,station):
         connection.cwd(directory)
         
         for filename in connection.nlst('*.DAT'):
+            print(filename)
             fhandle = open(filename, 'wb')
             print ('\t\tDownloading... ' + filename)
             connection.retrbinary('RETR ' + filename, fhandle.write)

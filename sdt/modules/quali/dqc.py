@@ -58,9 +58,13 @@ def process_files(files,path_to_qualify,out_path,web_path):
 		print('Processing level 01!!')
 		dqc,df = level_01(df,str(file),diction)
 		print(dqc)
+		print(df)
 
 
 		exit()
+
+
+
 		print('Processing level 02!!')
 		dqc = level_02(df,dqc,str(file))
 		print('Processing level 03!!')
