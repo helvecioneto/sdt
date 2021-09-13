@@ -3,6 +3,7 @@ from modules.load_config import load_config
 from modules.top_header import top_header
 from modules.load_files import load_files
 from camera.process_camera import process_files
+from pathlib import Path
 from dependecies import *
 
 config = load_config()
@@ -53,14 +54,13 @@ def load_stations_02():
             continue
     
         station = inputf2 + file_names[ans_file]
-        
         files = process_files(station)
         break
     return files
 
 def load_stations_03(path):
     top_header('Qualify Data - Load Stations')
-    file_names = [fn for fn in listdir(path) if not fn.startswith('.')]
+    file_names = [fn for fn in sorted(listdir(path)) if not fn.startswith('.')]
     file_names.append('ALL')
 
     count = -1
@@ -71,11 +71,9 @@ def load_stations_03(path):
     while True:
         try:
             ans_file = int(input("\t\t Select Station: "))
-
             if ans_file > count:
                 print ("\t\t Wrong selection.")
                 continue
-
         except:
             print("\t\t Wrong selection")
             continue
@@ -95,10 +93,12 @@ def load_stations_03(path):
 
         else:
             station = path + file_names[ans_file]
+
             return load_stations_04(station)
     
 def load_stations_04(path):
-    top_header('Select type of Data')
+    top_header('Qualify Data - Load Stations - ' + str((Path(path).parts[-1])))
+    print('\t\tSelect type of Data')
     file_names = [fn for fn in listdir(path) if not fn.startswith('.')]
     count = -1
     for f in file_names:
@@ -120,7 +120,8 @@ def load_stations_04(path):
         return load_stations_05(station)
     
 def load_stations_05(path):
-    top_header('Select Year')
+    top_header('Qualify Data - Load Stations - ' + str((Path(path).parts[-2:])))
+    print('\t\tSelect Year')
     file_names = [fn for fn in listdir(path) if not fn.startswith('.')]
     count = -1
     for f in file_names:

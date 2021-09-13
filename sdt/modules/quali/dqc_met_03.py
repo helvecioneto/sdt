@@ -46,14 +46,14 @@ def met_dqc_03(dframe,dqc_df,past_path):
                 ## Verifica se impossivel de qualificar
                 if dqc_df.loc[i][ac].all() == '0552' or dqc_df.loc[i][ac].all() == '0005' or dqc_df.loc[i][ac].all() == '0052' or dqc_df.loc[i][ac].all() == '0059' or dqc_df.loc[i][ac].all() == '0029':
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print('REPROVADO!')
-                    print('')
-                    print('DQC FRAME')
-                    print(dqc_df.loc[i][['timestamp',ac]].to_string())
-                    print('')
-                    print('DATA FRAME')
-                    print(dframe_.loc[i][['timestamp',ac]].to_string())
-                    input()
+                    # print('REPROVADO!')
+                    # print('')
+                    # print('DQC FRAME')
+                    # print(dqc_df.loc[i][['timestamp',ac]].to_string())
+                    # print('')
+                    # print('DATA FRAME')
+                    # print(dframe_.loc[i][['timestamp',ac]].to_string())
+                    # input()
                     continue
                 ## Verifica se linha é different das FLAGS
                 if analyze_value != -5555 and analyze_value != 3333:
@@ -68,59 +68,59 @@ def met_dqc_03(dframe,dqc_df,past_path):
                         array_min = np.nanmin(analyzed_array)
                         variation = array_max - array_min
                         ## variação > 0.5° num período de 1 hora
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        print('DEBUG')
-                        print('Variavel -> ',ac)
-                        print('')
-                        print('Frame atual->\n',dframe_.iloc[i][['timestamp',ac]].to_string())
-                        print('')
-                        print('Frame passado ->\n',dframe_.iloc[i-one_hour_obs:i][['timestamp',ac]].to_string())
-                        print('')
-                        print('Valor analisado ->',analyze_value)
-                        print('Valores passados -> ',analyzed_array.to_numpy())
-                        print('')
+                        # os.system('cls' if os.name == 'nt' else 'clear')
+                        # print('DEBUG')
+                        # print('Variavel -> ',ac)
+                        # print('')
+                        # print('Frame atual->\n',dframe_.iloc[i][['timestamp',ac]].to_string())
+                        # print('')
+                        # print('Frame passado ->\n',dframe_.iloc[i-one_hour_obs:i][['timestamp',ac]].to_string())
+                        # print('')
+                        # print('Valor analisado ->',analyze_value)
+                        # print('Valores passados -> ',analyzed_array.to_numpy())
+                        # print('')
                         if variation > 0.5:
                             ### dado de boa qualidade ou não suspeito
                             copy_dqc = dqc_df.loc[i][ac].values.tolist()
                             dqc_ok = copy_dqc[0][0:1] + '9' + copy_dqc[0][-2:]
                             dqc_df.loc[i,ac] = dqc_ok
-                            print('Max ->',array_max)
-                            print('Min ->',array_min)
-                            print('Variação ->',variation)
-                            print('')
-                            print('DQC da linha ->',copy_dqc)
-                            print('DQC adicionado -> ',dqc_ok)
-                            input()
+                            # print('Max ->',array_max)
+                            # print('Min ->',array_min)
+                            # print('Variação ->',variation)
+                            # print('')
+                            # print('DQC da linha ->',copy_dqc)
+                            # print('DQC adicionado -> ',dqc_ok)
+                            # input()
                         else:
                             ### dado suspeito de ser incorreto
                             copy_dqc = dqc_df.loc[i][ac].values.tolist()
                             dqc_no = copy_dqc[0][0:1] + '2' + copy_dqc[0][-2:]
                             dqc_df.loc[i,ac] = dqc_no
-                            print('Variação ->',variation)
-                            print('')
-                            print('DQC da linha ->',copy_dqc)
-                            print('DQC adicionado -> ',dqc_no)
-                            input()
+                            # print('Variação ->',variation)
+                            # print('')
+                            # print('DQC da linha ->',copy_dqc)
+                            # print('DQC adicionado -> ',dqc_no)
+                            # input()
                     else:
                         ### procedimento não pode ser executado
                         copy_dqc = dqc_df.loc[i][ac].values.tolist()
                         dqc_none = copy_dqc[0][0:1] + '5' + copy_dqc[0][-2:]
                         dqc_df.loc[i,ac] = dqc_none
-                        print('Variação ->',variation)
-                        print('')
-                        print('DQC da linha ->',copy_dqc)
-                        print('DQC adicionado -> ',dqc_none)
-                        input()
+                        # print('Variação ->',variation)
+                        # print('')
+                        # print('DQC da linha ->',copy_dqc)
+                        # print('DQC adicionado -> ',dqc_none)
+                        # input()
                 else:
                     ### procedimento não pode ser executado
                     copy_dqc = dqc_df.loc[i][ac].values.tolist()
                     dqc_null = copy_dqc[0][0:1] + '0' + copy_dqc[0][-2:]
                     dqc_df.loc[i,ac] = dqc_null
-                    print('Variação ->',variation)
-                    print('')
-                    print('DQC da linha ->',copy_dqc)
-                    print('DQC adicionado -> ',dqc_null)
-                    input()
+                    # print('Variação ->',variation)
+                    # print('')
+                    # print('DQC da linha ->',copy_dqc)
+                    # print('DQC adicionado -> ',dqc_null)
+                    # input()
                     
         ## Qualificar direcao vento
         if 'wd10_avg' in ac:

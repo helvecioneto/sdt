@@ -59,11 +59,7 @@ def process_files(files,path_to_qualify,out_path,web_path):
 		dqc,df = level_01(df,str(file),diction)
 		print(dqc)
 		print(df)
-
-
 		exit()
-
-
 
 		print('Processing level 02!!')
 		dqc = level_02(df,dqc,str(file))
@@ -129,9 +125,10 @@ def process_files(files,path_to_qualify,out_path,web_path):
 
 		first_row_header = [siglaNAME,nomeNAME,'lat:'+str(latNAME),'lon:'+str(lonNAME),'alt:'+str(altNAME)+'m',redeNAME+' Network','http://sonda.ccst.inpe.br','sonda@inpe.br']
 
-		### INCREMENT columns into dqc frame
-		dqc['ws10_std','dqc_v1'] = '0000'
-		dqc['wd10_std','dqc_v1'] = '0000'
+		if '_MD_' in str(file):
+			### INCREMENT columns into dqc frame
+			dqc['ws10_std','dqc_v1'] = '0000'
+			dqc['wd10_std','dqc_v1'] = '0000'
 
 		dqc_cols = []
 		dqc_mult_column = []
