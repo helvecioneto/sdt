@@ -1,29 +1,35 @@
 name: sonda
 channels:
-  - conda-forge
   - defaults
 dependencies:
-  - _libgcc_mutex=0.1=conda_forge
-  - _openmp_mutex=4.5=1_gnu
-  - ca-certificates=2020.12.5=ha878542_0
-  - certifi=2020.12.5=py36h5fab9bb_1
-  - ld_impl_linux-64=2.35.1=hea4e1c9_2
-  - libffi=3.3=h58526e2_2
-  - libgcc-ng=9.3.0=h2828fa1_19
-  - libgomp=9.3.0=h2828fa1_19
-  - libstdcxx-ng=9.3.0=h6de172a_19
-  - ncurses=6.2=h58526e2_4
-  - openssl=1.1.1k=h7f98852_0
-  - pip=21.1.2=pyhd8ed1ab_0
-  - python=3.6.13=hffdb5ce_0_cpython
-  - python_abi=3.6=1_cp36m
-  - readline=8.1=h46c0cb4_0
-  - setuptools=49.6.0=py36h5fab9bb_3
-  - sqlite=3.35.5=h74cdb3f_0
-  - tk=8.6.10=h21135ba_1
-  - wheel=0.36.2=pyhd3deb0d_0
-  - xz=5.2.5=h516909a_1
-  - zlib=1.2.11=h516909a_1010
+  - ca-certificates=2023.08.22=hecd8cb5_0
+  - certifi=2021.5.30=py36hecd8cb5_0
+  - libcxx=14.0.6=h9765a3e_0
+  - libffi=3.3=hb1e8313_2
+  - ncurses=6.4=hcec6c5f_0
+  - openssl=1.1.1w=hca72f7f_0
+  - pip=21.2.2=py36hecd8cb5_0
+  - python=3.6.13=h88f2d9e_0
+  - readline=8.2=hca72f7f_0
+  - setuptools=58.0.4=py36hecd8cb5_0
+  - sqlite=3.41.2=h6c40b1e_0
+  - tk=8.6.12=h5d9f67b_0
+  - wheel=0.37.1=pyhd3eb1b0_0
+  - xz=5.4.2=h6c40b1e_0
+  - zlib=1.2.13=h4dc903c_0
   - pip:
-    - xlrd==1.2.0
-prefix: /ssd/miniconda3/envs/sonda
+      - cached-property==1.5.2
+      - charset-normalizer==2.0.12
+      - dataclasses==0.8
+      - h5py==3.1.0
+      - idna==3.4
+      - numpy==1.19.5
+      - pandas==1.1.5
+      - pvlib==0.9.1
+      - python-dateutil==2.8.2
+      - pytz==2023.3.post1
+      - requests==2.27.1
+      - scipy==1.5.4
+      - six==1.16.0
+      - urllib3==1.26.18
+      - xlrd==2.0.1
