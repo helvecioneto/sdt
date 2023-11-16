@@ -1,5 +1,4 @@
-# sdt2
-Sonda Data Translator 2
+## Sonda Data Translator
 
 ## Dependency libraries for installation.
 
@@ -14,6 +13,7 @@ Sonda Data Translator 2
 ## Anaconda Python 3
 
 $ conda env create --file sonda.yml
+
 $ conda activate sonda
 
 ## How to use
